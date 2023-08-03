@@ -1,7 +1,6 @@
 from django.shortcuts import render,redirect
-from truckbrand.models import Contact,Product
+from truckbrand.models import Contact,Product,Orders,OrderUpdate
 from django.contrib import messages
-from .models import Product,Contact,Orders,OrderUpdate
 from django.conf import settings
 from math import ceil
 import json
@@ -38,7 +37,7 @@ def contact(request):
 def checkout(request):
     if not request.user.is_authenticated:
         messages.warning(request,"Login & Try Again")
-        return redirect('login')
+        return redirect('/cart/login')
     if request.method=="POST":
 
         items_json = request.POST.get('itemsJson', '')
@@ -60,7 +59,6 @@ def checkout(request):
         update.save()
         thank = True
         id = Order.order_id
-        oid=str(id)
         oid=str(id)
         param_dict = {
 
