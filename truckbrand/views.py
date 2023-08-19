@@ -19,7 +19,7 @@ def index(request):
         nSlides=n//4+ceil((n/4)-(n//4))
         allprods.append([prod,range(1,nSlides),nSlides])
         params={'allprods':allprods}
-    return render(request,"index.html",params)
+    return render(request,'index.html',params)
 
 def contact(request):
     if request.method=="POST":
@@ -59,7 +59,7 @@ def checkout(request):
         update.save()
         thank = True
         id = Order.order_id
-        oid=str(id)
+        oid=str(id)+"truckbrand"
         param_dict = {
 
             'MID': 'add ur merchant id',
